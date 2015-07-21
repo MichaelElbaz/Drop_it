@@ -4,7 +4,9 @@ import CoreMotion
 // drop check y acess points then reset
 // twist it check z range it 
 // 
-class MainScene: CCNode, MotionKitDelegate {
+
+
+class MainScene: CCNode {
     
     var xAcc: Double!
     var yAcc: Double!
@@ -20,8 +22,7 @@ class MainScene: CCNode, MotionKitDelegate {
     var gyroAvailable: Bool!
     let motionKit = MotionKit()
     weak var label: CCLabelTTF!
-  
-    var shook_once: Bool!
+
     
     func didLoadFromCCB () {
         var drop = CCBReader.load("Drop") as! Drop
@@ -30,7 +31,6 @@ class MainScene: CCNode, MotionKitDelegate {
         var shake = CCBReader.load("Shake") as! Shake
         schedule("randomAction", interval: 3)
         
-        motionKit.delegate = self
 
         motionKit.getGyroValues(interval: 1.0){
             (gyroX, gyroY, gyroZ) in
@@ -49,10 +49,9 @@ class MainScene: CCNode, MotionKitDelegate {
     }
     
     
-    
      override func onEnter() {
         super.onEnter()
-            
+        
     }
     
    override func update(delta: CCTime) {
@@ -83,11 +82,9 @@ class MainScene: CCNode, MotionKitDelegate {
         
         }//randomAction
     
-
-    
+        
     
     }//Class
-
 
 
 
