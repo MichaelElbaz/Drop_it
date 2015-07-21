@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # SpriteBuilder
 #
 *.ppng
@@ -28,6 +29,26 @@ xcuserdata
 *.xcuserstate
 *~.nib
 .DS_Store
+=======
+# Xcode
+#
+build/
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata
+*.xccheckout
+*.moved-aside
+DerivedData
+*.hmap
+*.ipa
+*.xcuserstate
+>>>>>>> 58e86cdc4d9d6168814661e48de99c980a33827f
 
 # CocoaPods
 #
@@ -37,9 +58,18 @@ xcuserdata
 #
 # Pods/
 
+<<<<<<< HEAD
 
 # Misc
 *.sconsign.dblite
 *.pyc
 *.orig
 *.ninja_log
+=======
+# Carthage
+#
+# Add this line if you want to avoid checking in source code from Carthage dependencies.
+# Carthage/Checkouts
+
+Carthage/Build
+>>>>>>> 58e86cdc4d9d6168814661e48de99c980a33827f
