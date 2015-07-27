@@ -10,6 +10,7 @@ class MainScene: CCNode {
     var xAcc: Double!
     var yAcc: Double!
     var zAcc: Double!
+    var xRot: Double!
     weak var drop: CCNode!
     weak var twist: CCNode!
     weak var lift: CCNode!
@@ -37,6 +38,14 @@ class MainScene: CCNode {
         var shake = CCBReader.load("Shake") as! Shake
         
         randomStateChange()
+        motionKit.getDeviceMotionObject(interval: 1.0){
+            (deviceMotion) -> () in
+            
+            var rotationX = deviceMotion.rotationRate.x
+            
+        }
+        
+
     }
     
     override func onEnter() {
@@ -72,9 +81,8 @@ class MainScene: CCNode {
         } else if randomNumber == 1 && previousAction != 1{
             twist.visible = true
             gameState = "twist"
-            self.randomStateChange()
+            scheduleOnce("twistDetection", delay: 0)
             previousAction = 1
-            // schedule("twistDetection", interval: 0.1)
         } else if randomNumber == 2 && previousAction != 2{
             lift.visible = true
             gameState = "lift"
@@ -124,30 +132,27 @@ class MainScene: CCNode {
             println("\(yAcc) , \(zAcc)")
             if  zAcc > thresholdZz && yAcc > thresholdYy {
                 if zAcc > -0.83 && yAcc > -0.34 {
-                println("Lift Detected")
-                self.unschedule("liftDetection")
-                self.randomStateChange()
+                    println("Lift Detected")
+                    self.unschedule("liftDetection")
+                    self.randomStateChange()
                 }
             }
         }
     }
     
     func twistDetection() {
-        let Gholdx = 0.1
-        randomStateChange()
         
-
-        //        motionKit.getRotationRateFromDeviceMotion(interval: 1.0) {
-        //(x, y, z) -> () in
-
-//          if Rtwist
-//
-//          if else Ltwist
-//        println("Twist Detected")
-//                self.unschedule("twistDetection")
-//            }
-//        }
-//        sleep(1)
+        let thresholdx = -0.95
+        
+        motionKit.getRotationRateFromDeviceMotion(interval: 1.0) {
+        (xRot, y, z) -> () in
+             println("\(xRot)" )
+            if  xRot < thresholdx {
+                println("Twist Detected")
+                self.unschedule("twistDetection")
+                self.randomStateChange()
+            }
+        }
     }
 
     func shakeDetection() {
