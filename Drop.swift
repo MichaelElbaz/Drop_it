@@ -10,9 +10,7 @@ import Foundation
 
 class Drop: CCNode {
     
-    
-    
-    
+      
     
         
         

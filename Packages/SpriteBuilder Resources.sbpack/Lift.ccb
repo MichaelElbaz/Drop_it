@@ -72,7 +72,7 @@
 						<key>value</key>
 						<array>
 							<real>0.0</real>
-							<real>104.44091033935547</real>
+							<real>90.440910339355469</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -120,7 +120,7 @@
 						<key>type</key>
 						<string>FontTTF</string>
 						<key>value</key>
-						<string>Helvetica</string>
+						<string>Papyrus</string>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -129,7 +129,7 @@
 						<string>FloatScale</string>
 						<key>value</key>
 						<array>
-							<real>45</real>
+							<real>50</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -246,6 +246,8 @@
 						</array>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -982,8 +984,6 @@
 				</array>
 			</dict>
 		</array>
-		<key>selected</key>
-		<true/>
 	</dict>
 	<key>notes</key>
 	<array/>

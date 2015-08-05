@@ -1,12 +1,13 @@
 import Foundation
 import CoreMotion
 
-// drop check y acess points then reset
-// twist it check z range it 
-// 
 
 
 class MainScene: CCNode {
+    
+    weak var xMark: CCSprite!
+    weak var check: CCSprite!
+    weak var scoreLabel: CCLabelTTF!
     var xAcc: Double!
     var yAcc: Double!
     var zAcc: Double!
@@ -23,13 +24,28 @@ class MainScene: CCNode {
     let motionKit = MotionKit()
     weak var label: CCLabelTTF!
     var timer: Double = 5.0
+    var dropIt: Bool! = false
+    var twistIt: Bool! = false
+    var liftIt: Bool! = false
+    var shakeIt: Bool! = false
+    weak var life1: CCSprite!
+    weak var life2: CCSprite!
+    weak var life3: CCSprite!
+    
+
+    
     var gameState: String = "nothing" {
         didSet {
             
         }
     }
     var previousAction: Int = 0
-
+    
+    var score: Int = 0 {
+        didSet {
+            scoreLabel.string = "\(score)"
+        }
+    }
     
     func didLoadFromCCB () {
         var drop = CCBReader.load("Drop") as! Drop
@@ -38,6 +54,7 @@ class MainScene: CCNode {
         var shake = CCBReader.load("Shake") as! Shake
         
         randomStateChange()
+        
         motionKit.getDeviceMotionObject(interval: 1.0){
             (deviceMotion) -> () in
             
@@ -53,10 +70,17 @@ class MainScene: CCNode {
     }
     
     override func update(delta: CCTime) {
-//        timer -= 0.01
-//        if timer <= 0 {
-//            gameOver()
-//        }
+               if life3.visible == true {
+            
+            life3.visible == false
+            
+        } else if life2.visible == true {
+            life2.visible == false
+            
+        } else if life1.visible == true {
+            life1.visible == false
+                gameOver()
+         }
     }
 
     func gameOver() {
@@ -67,110 +91,129 @@ class MainScene: CCNode {
         
         var randomNumber = arc4random_uniform(4)
         
+        do {
+            randomNumber = arc4random_uniform(4)
+        } while Int(randomNumber) == previousAction
+        
+        println("Random number = \(randomNumber)")
+        
         drop.visible = false
         twist.visible = false
         lift.visible = false
         shake.visible = false
-        
+        check.visible = false
+
+    
         
         if randomNumber == 0 && previousAction != 0{
             drop.visible = true
             gameState = "drop"
             scheduleOnce("dropDetection", delay: 0)
-            previousAction = 0
         } else if randomNumber == 1 && previousAction != 1{
             twist.visible = true
             gameState = "twist"
             scheduleOnce("twistDetection", delay: 0)
-            previousAction = 1
         } else if randomNumber == 2 && previousAction != 2{
             lift.visible = true
             gameState = "lift"
             scheduleOnce("liftDetection", delay: 0)
-            previousAction = 2
         } else if randomNumber == 3 && previousAction != 3{
             shake.visible = true
             gameState = "shake"
             scheduleOnce("shakeDetection", delay: 0)
-            previousAction = 3
         }
     }
     
     func dropDetection() {
         
-        let thresholdY = 0.5718
-        let thresholdZ = -0.8417
+        let thresholdY = 0.217819213867188
+        let thresholdZ = -0.734298706054688
+        var dropIt = false
         
         motionKit.getAccelerometerValues(interval: 0.65) {
             (xAcc, yAcc, zAcc) in
             println("\(yAcc) , \(zAcc)")
             
             if  zAcc >  thresholdZ && yAcc > thresholdY{
-                if  zAcc >  -0.8698 && yAcc > 0.715 {
+                if  zAcc >  -0.8698 && yAcc > 0.3015 {
                     println("Drop Detected")
-                    self.unschedule("dropDetection")
+                    self.previousAction = 0
                     self.randomStateChange()
-                    
-                } else if zAcc <= 0.2756 && yAcc <= 1.72{
-                    
-                    println("Chill, dude")
-                    
+                    self.check.visible = true
+                    self.score++
                 }
-                
-                
-            }
+            } 
         }
     }
+    
  
     func liftDetection() {
         let thresholdYy = -0.717
-        let thresholdZz = -0.724
-        
+        let thresholdZz = -0.638
+        var liftIt = false
+
         motionKit.getAccelerometerValues(interval: 0.65) {
             (xAcc, yAcc, zAcc) in
             
             println("\(yAcc) , \(zAcc)")
             if  zAcc > thresholdZz && yAcc > thresholdYy {
-                if zAcc > -0.83 && yAcc > -0.34 {
+                if zAcc >  -0.311 && yAcc > -0.80 {
                     println("Lift Detected")
-                    self.unschedule("liftDetection")
+                    self.previousAction = 2
+                    self.check.visible = true
+                    self.score++
                     self.randomStateChange()
+                    
+                    
                 }
             }
+            
         }
     }
     
     func twistDetection() {
         
-        let thresholdx = -0.95
+        let thresholdx = -0.80
+        var twistIt = false
         
         motionKit.getRotationRateFromDeviceMotion(interval: 1.0) {
-        (xRot, y, z) -> () in
-             println("\(xRot)" )
+            (xRot, y, z) -> () in
+                
+            println("\(xRot)" )
+            
             if  xRot < thresholdx {
+                
                 println("Twist Detected")
-                self.unschedule("twistDetection")
+//                self.unschedule("twistDetection")
+                self.previousAction = 1
+                self.check.visible = true
                 self.randomStateChange()
+                self.score++
             }
         }
     }
 
+
+    
+    
+    
     func shakeDetection() {
-       let threshold = 1.0
-        
-        motionKit.getAccelerometerValues(interval: 1.0) {
+        let threshold = 1.0
+        var shakeIt = false
+        motionKit.getAccelerometerValues(interval: 1) {
             (xAcc, yAcc, zAcc) in
-            
+
             if  xAcc > threshold || xAcc < -threshold ||
                 yAcc > threshold || yAcc < -threshold ||
                 zAcc > threshold || zAcc < -threshold {
                     println("Shake Detected")
-                    self.unschedule("shakeDetection")
+                    self.previousAction = 3
+                    self.check.visible = true
                     self.randomStateChange()
+                    self.score++
             }
-    
         }
-
     }
+
 
 }//Class

@@ -162,11 +162,18 @@
 			<key>tabletScale</key>
 			<integer>1</integer>
 		</dict>
+		<key>dropAssets/PlayDrop.png</key>
+		<dict>
+			<key>scaleFrom</key>
+			<integer>4</integer>
+		</dict>
 		<key>dropAssets/coin.png</key>
 		<dict>
 			<key>scaleFrom</key>
 			<integer>2</integer>
 		</dict>
+		<key>dropAssets/hud_heartEmpty@4x.png</key>
+		<dict/>
 	</dict>
 	<key>versionStr</key>
 	<string>revision : eea568a5c7

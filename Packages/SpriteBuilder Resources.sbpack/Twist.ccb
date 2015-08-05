@@ -313,7 +313,7 @@
 						<key>value</key>
 						<array>
 							<real>0.0</real>
-							<real>112.13614654541016</real>
+							<real>105.13614654541016</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -360,7 +360,7 @@
 						<key>type</key>
 						<string>FontTTF</string>
 						<key>value</key>
-						<string>Georgia</string>
+						<string>Papyrus</string>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -369,7 +369,7 @@
 						<string>FloatScale</string>
 						<key>value</key>
 						<array>
-							<real>60</real>
+							<real>50</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -486,8 +486,6 @@
 						</array>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 		</array>
 		<key>customClass</key>

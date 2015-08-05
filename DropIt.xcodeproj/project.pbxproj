@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4CDFE28E1B6804930053005F /* StartScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDFE28D1B6804930053005F /* StartScreen.swift */; };
 		4CF9DF391B553FFE00BB1717 /* Drop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF9DF381B553FFE00BB1717 /* Drop.swift */; };
 		4CF9DF4B1B55500A00BB1717 /* Twist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF9DF4A1B55500A00BB1717 /* Twist.swift */; };
 		4CF9DF4D1B55501A00BB1717 /* Lift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF9DF4C1B55501A00BB1717 /* Lift.swift */; };
@@ -153,6 +154,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4CDFE28D1B6804930053005F /* StartScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StartScreen.swift; path = Source/Drop_it/StartScreen.swift; sourceTree = "<group>"; };
 		4CF9DF381B553FFE00BB1717 /* Drop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Drop.swift; sourceTree = "<group>"; };
 		4CF9DF4A1B55500A00BB1717 /* Twist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Twist.swift; sourceTree = "<group>"; };
 		4CF9DF4C1B55501A00BB1717 /* Lift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Lift.swift; sourceTree = "<group>"; };
@@ -446,6 +448,7 @@
 			children = (
 				7A40362019DDEF0D007B6E8F /* Platforms */,
 				7A046D7519E84C36004C4763 /* MainScene.swift */,
+				4CDFE28D1B6804930053005F /* StartScreen.swift */,
 				4CF9DF381B553FFE00BB1717 /* Drop.swift */,
 				4CF9DF4A1B55500A00BB1717 /* Twist.swift */,
 				4CF9DF4C1B55501A00BB1717 /* Lift.swift */,
@@ -833,6 +836,7 @@
 				4CF9DF4F1B55502C00BB1717 /* Shake.swift in Sources */,
 				B73789871807631A0076A88C /* main.m in Sources */,
 				4CF9DF391B553FFE00BB1717 /* Drop.swift in Sources */,
+				4CDFE28E1B6804930053005F /* StartScreen.swift in Sources */,
 				7A046D7919E84ED5004C4763 /* MainScene.swift in Sources */,
 				5B121038197487F2004C1E1D /* AppDelegate.m in Sources */,
 				4CF9DF4B1B55500A00BB1717 /* Twist.swift in Sources */,
